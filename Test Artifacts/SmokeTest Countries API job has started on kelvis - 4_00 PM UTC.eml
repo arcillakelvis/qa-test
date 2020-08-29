@@ -1,0 +1,227 @@
+Delivered-To: arcillakelvis@gmail.com
+Received: by 2002:ab0:4147:0:0:0:0:0 with SMTP id j65csp2076950uad;
+        Sat, 29 Aug 2020 09:00:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzCzPKtyoLM5G2nplA1DDBF26mIrwbLpk61z6BVW7ffuV7eTssp8B4RGwtt4CqIvFH4DlY0
+X-Received: by 2002:a05:6402:8d3:: with SMTP id d19mr3872715edz.68.1598716855071;
+        Sat, 29 Aug 2020 09:00:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1598716855; cv=none;
+        d=google.com; s=arc-20160816;
+        b=02KZ2nI5b7xHujDYnHT2IhSZptQbbCeQslKuaCwutE3I3N+n44gqX7Gke2i8epKZzf
+         dad05KaGfygetIRGdUeui2lFQRD0nlw90gqej2WbQizKa9AwkM2NwfzRUwkbYKIYSavj
+         XevgcMuRg6TbsQuL/h6LxFZQMggk/EggyJ5e1I697kXlHOEvE7cgKwCtOafGAW7MoQlT
+         +WGnW4uGTWRQnRc5wtYxvxAn99QeoOzRS1dUkcmIhjzw4mVDiKx1VVCiDgbf0+sw1uWh
+         GjpuVjPux7RJjTuRPLwR+Zfwk/e527E/s0yyvnyvFd8qQWdVkiD1S0GiW+hg1ul101Gc
+         auwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:mime-version:from:date
+         :content-transfer-encoding:dkim-signature:dkim-signature;
+        bh=cez2Zw+uh9vEHszNYCFWQrUmT7qJkZj3RYjPPTZBucI=;
+        b=Qpl6kUCiV22vgg8bTJvZYBD+F0vNOj1ZY2IJKEt064hNyYZcwaO3AdawsAod7lduF2
+         42hSE22fS3ebw5ySdr/pHYoOu9M4iW7hgsJNIr0IoMDB05dx+pn++nQ5q4fvs8cF0zVA
+         OxV+6BH2rFLWbhEUL6TZpBx0+KX3C2tcv/bQzJY7L0Snw14yxmbRyY8Y7sCA4Q0GzxXL
+         g/oqXC1L9rYaBHPD66DakBCUde6s82juGP1jURiFRIX1dRcROCgQdbh9IrB20cr1Vh5/
+         Y0KMBCwyu0TE/gVRQcU+fdAzQL3lOMRVY17aDaM07IbnXP44DnAOzNYFZbdtbkq4t35/
+         ilJw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@testproject.io header.s=s1 header.b="4FGFe/iF";
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=xrxI3KDg;
+       spf=neutral (google.com: 167.89.100.13 is neither permitted nor denied by best guess record for domain of bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io) smtp.mailfrom="bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io"
+Return-Path: <bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io>
+Received: from o1.3n.shared.sendgrid.net (o1.3n.shared.sendgrid.net. [167.89.100.13])
+        by mx.google.com with ESMTPS id w17si1797565edv.67.2020.08.29.09.00.54
+        for <arcillakelvis@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Aug 2020 09:00:55 -0700 (PDT)
+Received-SPF: neutral (google.com: 167.89.100.13 is neither permitted nor denied by best guess record for domain of bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io) client-ip=167.89.100.13;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@testproject.io header.s=s1 header.b="4FGFe/iF";
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=xrxI3KDg;
+       spf=neutral (google.com: 167.89.100.13 is neither permitted nor denied by best guess record for domain of bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io) smtp.mailfrom="bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testproject.io;
+	h=content-transfer-encoding:content-type:from:mime-version:subject:
+	x-feedback-id:to;
+	s=s1; bh=cez2Zw+uh9vEHszNYCFWQrUmT7qJkZj3RYjPPTZBucI=;
+	b=4FGFe/iFhk+WS3BYo3jSEKfy0zzJ3b27ATNFYZn8WnIrvLXXM/fH9AhK9lMPNyisd2V3
+	3XD89gc/F3skAV3CfDLrljxv5ToCNIe5T8f//Gi97xXZV4HLzTnHPHsnwOdPpNgkQCFm6Y
+	e9RtxFG2kmEF9ATk7SECaz5DKs03Ed2uY=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-transfer-encoding:content-type:from:mime-version:subject:
+	x-feedback-id:to;
+	s=smtpapi; bh=cez2Zw+uh9vEHszNYCFWQrUmT7qJkZj3RYjPPTZBucI=;
+	b=xrxI3KDglEvgj5qmK2qjLgas92inR7SRxjm8I3q5n9pU7Y+W3ciNCIGMnpid3k36cQlj
+	7xA6mic1C8XODh6VEADTU4tZ0X0KaEYTjiImE4pWvhxf8a2UpJJ7hCXXrhed82GjrsmwiM
+	OnFW5POsjn7dvDrR5pseCySvjKHXJcv08=
+Received: by filterdrecv-p3las1-75ccf54874-h2qs7 with SMTP id filterdrecv-p3las1-75ccf54874-h2qs7-19-5F4A7BB5-22
+        2020-08-29 16:00:53.269695224 +0000 UTC m=+165650.248993170
+Received: from MjMxMDYxNQ (unknown)
+	by ismtpd0006p1lon1.sendgrid.net (SG)
+	with HTTP
+	id VB8VB9txRdC-hSEUPs24Kg
+	Sat, 29 Aug 2020 16:00:53.055 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=iso-8859-1
+Date: Sat, 29 Aug 2020 16:00:53 +0000 (UTC)
+From: TestProject <noreply@testproject.io>
+Mime-Version: 1.0
+Message-ID: <VB8VB9txRdC-hSEUPs24Kg@ismtpd0006p1lon1.sendgrid.net>
+Subject: SmokeTest Countries API job has started on kelvis - 4:00 PM UTC
+X-Feedback-ID: 2310615:SG
+X-SG-EID: 
+ =?us-ascii?Q?g0GsZxNV8tqz61xIT+3sMiXb4JTgyW9IYqbWGsg3GSGvKID=2FXp7HjGCr5jLHBZ?=
+ =?us-ascii?Q?=2FRW25NuetqREWGHS6MdZ8nje=2FTADAnGUmKj2lis?=
+ =?us-ascii?Q?q7qY0aQYesrplkwPfqO71vpvIO=2FGhb0viPaM+7F?=
+ =?us-ascii?Q?EYJlSZL2IzIClrCA07lidoj01n7gIvOpQ=2FVH0YV?=
+ =?us-ascii?Q?z3pgiTL41snPq=2FCSlPmflXy6BCKPSOasEpN+0mE?=
+ =?us-ascii?Q?=2FKtoGtuDG6=2FXSOPaRgfYolFkXCPeFU9EfqfTbrM?=
+ =?us-ascii?Q?+=2FnaLHv7hfHSyQBEvnZ1A=3D=3D?=
+To: arcillakelvis@gmail.com
+
+
+<html>
+
+<head>
+	<meta charset=3D"utf-8">
+	<title></title>
+	<link rel=3D"stylesheet" type=3D"text/css" href=3D"http://fonts.googleapis=
+.com/css?family=3DOpen+Sans">
+
+</head>
+
+<body>
+
+	<table style=3D"width: 600px;height: 670px;margin: 0 10px;">
+		<tr>
+			<td>
+				<img src=3D"https://storage-static.testproject.io/templates/TP-Template=
+-Logo-With-Text.png">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<!--<td class=3D"content-padder" style=3D"width: 10%;"></td>-->
+						<td>
+							<div style=3D"width: 550px;margin: auto;font-size: 16px;line-height:=
+ 22px;">
+								<br />
+								<h3><span style=3D"color:#00a4db;">SmokeTest Countries API</span> j=
+ob has started on kelvis @ 16:00:53 UTC</h3>
+							</div>
+						</td>
+						<!--<td class=3D"content-padder" style=3D"width: 10%;"></td>-->
+					</tr>
+				</table>
+				<table>
+					<tr><td class=3D"spacer" style=3D"height: 20px;"></td><td></td></tr>
+					<tr>
+						<td style=3D"color:#00a4db;">Started:</td>
+						<td style=3D"padding-left:10px;"><b>16:00:53 UTC</b></td>
+					</tr>
+					<tr>
+						<td style=3D"color:#00a4db;">Started By: </td>
+						<td style=3D"padding-left:10px;"><b>Kelvis Arcilla</b></td>
+					</tr>
+					<tr>
+						<td style=3D"color:#00a4db;">Agent: </td>
+						<td style=3D"padding-left:10px;"><b>kelvis</b></td>
+					</tr>
+					<tr>
+						<td style=3D"color:#00a4db;">Platform: </td>
+						<td style=3D"padding-left:10px;"><b>Web</b></td>
+					</tr>
+					<tr>
+						<td style=3D"color:#00a4db;">Tests: </td>
+						<td style=3D"padding-left:10px;"><b>1</b></td>
+					</tr>
+					<tr>
+						<td style=3D"color:#00a4db;">Targets: </td>
+						<td style=3D"padding-left:10px;">
+							<ul>
+									<li><b>Chrome</b></li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+				<table style=3D"width:100%;text-align:center;" cellspacing=3D"0" cellpa=
+dding=3D"0">
+					<tr><td></td><td class=3D"spacer" style=3D"height: 20px;"></td><td></t=
+d></tr>
+					<tr>
+						<td></td>
+						<td>
+							<div class=3D"mail-text secondary-text" style=3D"width: 550px;margin=
+: auto;font-size: 14px;line-height: 18px;">
+								<p>
+									<b>Have any questions or suggestions?</b>
+									You are welcome to contact us at any time via the <a href=3D"https=
+://support.testproject.io" style=3D"text-decoration: none;color: #13a3da;">=
+support portal</a>. We are always happy to hear from you and help you with =
+any possible issues.
+								</p>
+								<p>
+									TestProject Team
+								</p>
+							</div>
+						</td>
+						<td></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+
+<td class=3D"footer" style=3D"text-align: center;width: 100%;">
+	<table style=3D"width: 100%;">
+		<tr>
+			<td class=3D"seperator" style=3D"margin: auto;width: 90%;height: 1px;bac=
+kground-color: #d9d9d9;"></td>
+		</tr>
+		<tr>
+			<td class=3D"footer-text" style=3D"color: #9a9a9a;margin: auto;font-size=
+: 12px;font-weight: 300;line-height: 16px;text-align: center;">
+				<p>
+					This message was sent by <a href=3D"https://testproject.io" style=3D"t=
+ext-decoration: none;color: #13a3da;">TestProject</a><br>
+					Need <a href=3D"https://support.testproject.io" style=3D"text-decorati=
+on: none;color: #13a3da;">help</a> using TestProject?<br>
+					=A9 2020 TestProject<br>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td class=3D"footer-icons-container" style=3D"text-align: center;height:=
+ 24px;">
+				<span>
+					<a href=3D"https://www.facebook.com/testproject.io/" style=3D"text-dec=
+oration: none;color: #13a3da;"><img src=3D"https://storage-static.testproje=
+ct.io/templates/facebook-circle-gray.png" style=3D"height: 24px;width: 24px=
+;"></a>
+					<a href=3D"https://www.linkedin.com/company/testproject/" style=3D"tex=
+t-decoration: none;color: #13a3da;"><img src=3D"https://storage-static.test=
+project.io/templates/linkedin-circle-gray.png" style=3D"height: 24px;width:=
+ 24px;"></a>
+					<a href=3D"https://twitter.com/TestProject_io" style=3D"text-decoratio=
+n: none;color: #13a3da;"><img src=3D"https://storage-static.testproject.io/=
+templates/twitter-circle-gray.png" style=3D"height: 24px;width: 24px;"></a>
+					<a href=3D"https://github.com/testproject-io" style=3D"text-decoration=
+: none;color: #13a3da;"><img src=3D"https://storage-static.testproject.io/t=
+emplates/github-circle-gray.png" style=3D"height: 24px;width: 24px;"></a>
+				</span>
+			</td>
+
+		</tr>
+	</table>
+</td>
+		</tr>
+	</table>
+<img src=3D"https://u2310615.ct.sendgrid.net/wf/open?upn=3DPOYFZj7MMnGcva9z=
+AvS-2BsXxAo33JjncmpB8Kx93-2FNWjcZX77a-2BkQ9hMOK1OOhS-2BJhuQdS8B6de9NXq7zkYY=
+AqT0Sc4jZqFyJaxjMhbXF1TEv9kMU-2F2ckR0jhmXVNFn3X9RIAF3L-2FcRVv8T-2F9ebazdlml=
+6Qip3j56oQ0eAeT6BndBZZ8f8I9AdeAvIkeh0S7KwFjNOEsDR5AFEYdAkWK6hKV9Ism5Tb-2F5A=
+D0EfbXgqHA-3D" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"heig=
+ht:1px !important;width:1px !important;border-width:0 !important;margin-top=
+:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-l=
+eft:0 !important;padding-top:0 !important;padding-bottom:0 !important;paddi=
+ng-right:0 !important;padding-left:0 !important;"/></body>
+</html>

@@ -1,0 +1,383 @@
+Delivered-To: arcillakelvis@gmail.com
+Received: by 2002:ab0:4147:0:0:0:0:0 with SMTP id j65csp2077197uad;
+        Sat, 29 Aug 2020 09:01:15 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzLR/cEdv4nx8XuzJIDY23inffk35FYBWj76RFa7WwI3/uuExDFzeg2qOfal5663Op7XrUv
+X-Received: by 2002:aa7:d88b:: with SMTP id u11mr3800869edq.21.1598716875577;
+        Sat, 29 Aug 2020 09:01:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1598716875; cv=none;
+        d=google.com; s=arc-20160816;
+        b=TyPy2t9homneSNWw8Z0h9xO0ncwDnHq7OB2d2265azo6jNt4J1VtB7RJiKZ3FKphCw
+         KwlZHgqfqTGusoJVUzuFOalb5f++EBsKCSyczlyPJICRZHTnFdLUf8Xq2KDPcGQm1dPW
+         9uvKCvjMyyAMkb4xN5dpJ6geA6fP11PRk273oP07/szVhLVxWeBwAzwO44oibT9oEQJ7
+         DtgWUoX8aOBJaomnjRf/nzcfPiwAguTDHe2N2Oub1kLr768Qp9/jGsvKAprMGSK5/l3N
+         8ZpRc/56KGUibkTY+S6/5vx/CNbWpPFehb8Z3u0yM0/eVwTZ5LYU/wXAZpkPYmhv7/rq
+         C8YA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:mime-version:from:date
+         :content-transfer-encoding:dkim-signature:dkim-signature;
+        bh=iHU7YkEzQ5q0RfjEe75PW9zqjZnwSmyyV33InBnRUVw=;
+        b=SA7FS1ivRJ3bhNDhd17omldsBJLLvczi514/4lTU56YyFlEHSVr5wYKZk7BidcBdGX
+         roSwC2ExCYrZ9LeMjw+AoFAxzjjMsRgMwIofNU53KaQzEsEwD+ZXjip8jiHNt7nGL8fM
+         Z2+xCRPnNO35sRvHqZV5agKJrLsrVA+iw0uZqF2LUwtiJgCJPliHJ1WB/bFgXnAYxenw
+         Eahqzq40TvJs+uXPLy/6YjbP9qJRGMWWjmbQnz/HOJrlDunJmxWmqkIGzzyD8PSnA7tz
+         38ghhMsZ8xGNIK9PNbViw8OrBVKm93lNdeAi9Z3mU4f+W7UW+q4sbJO2yuEzbDzOWJLJ
+         R/XQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@testproject.io header.s=s1 header.b=AtGmkHZd;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b="gMpY/lhx";
+       spf=neutral (google.com: 167.89.100.13 is neither permitted nor denied by best guess record for domain of bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io) smtp.mailfrom="bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io"
+Return-Path: <bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io>
+Received: from o1.3n.shared.sendgrid.net (o1.3n.shared.sendgrid.net. [167.89.100.13])
+        by mx.google.com with ESMTPS id l14si2000022ejz.216.2020.08.29.09.01.14
+        for <arcillakelvis@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 29 Aug 2020 09:01:15 -0700 (PDT)
+Received-SPF: neutral (google.com: 167.89.100.13 is neither permitted nor denied by best guess record for domain of bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io) client-ip=167.89.100.13;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@testproject.io header.s=s1 header.b=AtGmkHZd;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b="gMpY/lhx";
+       spf=neutral (google.com: 167.89.100.13 is neither permitted nor denied by best guess record for domain of bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io) smtp.mailfrom="bounces+2310615-eacd-arcillakelvis=gmail.com@support.testproject.io"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testproject.io;
+	h=content-transfer-encoding:content-type:from:mime-version:subject:
+	x-feedback-id:to;
+	s=s1; bh=iHU7YkEzQ5q0RfjEe75PW9zqjZnwSmyyV33InBnRUVw=;
+	b=AtGmkHZdcJqCYrlqvNt15lPYZNqgWpFZ8hOcbz1ovVVS/eua7Y2LaVzXdmHieHn+nwk9
+	ZSyFXemJkiTuOZqeGJaIYEP5dNGXpIAV77KaaebGbAnFZWALeCmF8q81Rst3AgP055UAq5
+	UJctSYAK/fbI9yol5D1BVGs2bVZUiGLX8=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-transfer-encoding:content-type:from:mime-version:subject:
+	x-feedback-id:to;
+	s=smtpapi; bh=iHU7YkEzQ5q0RfjEe75PW9zqjZnwSmyyV33InBnRUVw=;
+	b=gMpY/lhxvoeZqcyunqO5VIbkHQwNRVzIDKpqSj/Jrd6viNRg6foqMukjJ5u9QdVRLRlh
+	0/CA9rNK6PJArw+xbhM5kp0DMAgfRiWpA9OR8NBpqDceDxW8z2oLhgQG5TkqG7virUIWc9
+	EcnFzpteFZljZjjWbzHtGPNCsLatBnP6s=
+Received: by filterdrecv-p3las1-75ccf54874-d4svb with SMTP id filterdrecv-p3las1-75ccf54874-d4svb-18-5F4A7BC6-C1
+        2020-08-29 16:01:10.893426821 +0000 UTC m=+165680.339140874
+Received: from MjMxMDYxNQ (unknown)
+	by ismtpd0006p1lon1.sendgrid.net (SG)
+	with HTTP
+	id zZx_zgTaScSp-8mp_8L23w
+	Sat, 29 Aug 2020 16:01:10.640 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=iso-8859-1
+Date: Sat, 29 Aug 2020 16:01:10 +0000 (UTC)
+From: TestProject <noreply@testproject.io>
+Mime-Version: 1.0
+Message-ID: <zZx_zgTaScSp-8mp_8L23w@ismtpd0006p1lon1.sendgrid.net>
+Subject: Your TestProject report summary - SmokeTest Countries API, Saturday,
+ 29 August 2020 16:00 UTC - [PASSED]
+X-Feedback-ID: 2310615:SG
+X-SG-EID: 
+ =?us-ascii?Q?g0GsZxNV8tqz61xIT+3sMiXb4JTgyW9IYqbWGsg3GSGvKID=2FXp7HjGCr5jLHBZ?=
+ =?us-ascii?Q?=2FRW25NuetqREWGHS6MdZ8njROzgRpp4ZLXpc8Rx?=
+ =?us-ascii?Q?tV9MCyM4IuSgcx3QYYVSA9upyCbN2FrPFhnMGZT?=
+ =?us-ascii?Q?=2FrOJ2rN03SpnSif6T8RFiLP65zn5qGWqbaYkzj7?=
+ =?us-ascii?Q?bFtU8ct2fxleWe4YQYWL78Nu83uQpuK4s7Cta3G?=
+ =?us-ascii?Q?HlfZqNS+th5NbZqxGQyqeH9BwaA4ks=2FnbvTt5bh?=
+ =?us-ascii?Q?PNGWL=2F=2FxvslTsyEN5twjA=3D=3D?=
+To: arcillakelvis@gmail.com
+
+
+<html>
+
+<head>
+    <meta charset=3D"utf-8">
+    <title></title>
+    <link rel=3D"stylesheet" type=3D"text/css" href=3D"http://fonts.googlea=
+pis.com/css?family=3DOpen+Sans">
+
+</head>
+
+<body>
+
+    <table style=3D"width: 600px;height: 670px;margin: 0 10px;">
+        <tr>
+            <td>
+                <img src=3D"https://storage-static.testproject.io/templates=
+/TP-Template-Logo-With-Text.png">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <!--<td class=3D"content-padder" style=3D"width: 10=
+%;"></td>-->
+                        <td>
+                            <div style=3D"width: 550px;margin: auto;font-si=
+ze: 16px;line-height: 22px;">
+                                <br />
+                                    <h3><span style=3D"color:#00a4db;">Smok=
+eTest Countries API</span> - 16:00:54, 100.0% passed</h3>
+                                <span></span>
+                            </div>
+                        </td>
+                        <!--<td class=3D"content-padder" style=3D"width: 10=
+%;"></td>-->
+                    </tr>
+                </table>
+                <table cellspacing=3D"0" style=3D"width:100%;text-align:cen=
+ter;padding-top:10px">
+                    <tr>
+                        <td style=3D"width:10%;"></td>
+                        <td>
+                            <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <center>
+                                                <!--[if mso]>
+                                                  <v:roundrect xmlns:v=3D"u=
+rn:schemas-microsoft-com:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:w=
+ord" style=3D"height:56px;v-text-anchor:middle;width:120px;" arcsize=3D"5%"=
+ strokecolor=3D"#d8eacc" fillcolor=3D"#d8eacc">
+                                                    <w:anchorlock/>
+                                                    <center style=3D"color:=
+#008000;font-family:Helvetica, Arial,sans-serif;font-size:16px;"><b>100.0%<=
+/b><br><span style=3D"font-size:small;">PASSED</span></center>
+                                                  </v:roundrect>
+                                                <![endif]-->
+                                                <div style=3D"background-co=
+lor:#d8eacc;border:1px solid #d8eacc;border-radius:3px;color:green;display:=
+inline-block;font-family:sans-serif;font-size:16px;line-height:22px;text-al=
+ign:center;text-decoration:none;width:120px;-webkit-text-size-adjust:none;m=
+so-hide:all;padding:5px 0;"><b>100.0%</b><br><span style=3D"font-size:small=
+;">PASSED</span></div>
+                                            </center>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style=3D"width:10%;"></td>
+                        <td>
+                            <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <center>
+                                                <!--[if mso]>
+                                                  <v:roundrect xmlns:v=3D"u=
+rn:schemas-microsoft-com:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:w=
+ord" style=3D"height:56px;v-text-anchor:middle;width:120px;" arcsize=3D"5%"=
+ strokecolor=3D"#fbcfbd" fillcolor=3D"#fbcfbd">
+                                                    <w:anchorlock/>
+                                                    <center style=3D"color:=
+#fe0100;font-family:Helvetica, Arial,sans-serif;font-size:16px;"><b>0.0%</b=
+><br><span style=3D"font-size:small;">FAILED</span></center>
+                                                  </v:roundrect>
+                                                <![endif]-->
+                                                <div style=3D"background-co=
+lor:#fbcfbd;border:1px solid #fbcfbd;border-radius:3px;color:red;display:in=
+line-block;font-family:sans-serif;font-size:16px;line-height:22px;text-alig=
+n:center;text-decoration:none;width:120px;-webkit-text-size-adjust:none;mso=
+-hide:all;padding:5px 0;"><b>0.0%</b><br><span style=3D"font-size:small;">F=
+AILED</span></div>
+                                            </center>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style=3D"width:10%;"></td>
+                        <td>
+                            <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <center>
+                                                <!--[if mso]>
+                                                  <v:roundrect xmlns:v=3D"u=
+rn:schemas-microsoft-com:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:w=
+ord" style=3D"height:56px;v-text-anchor:middle;width:120px;" arcsize=3D"5%"=
+ strokecolor=3D"#d3d3d3" fillcolor=3D"#d3d3d3">
+                                                    <w:anchorlock/>
+                                                    <center style=3D"color:=
+#808080;font-family:Helvetica, Arial,sans-serif;font-size:16px;"><b>0.0%</b=
+><br><span style=3D"font-size:small;">SKIPPED</span></center>
+                                                  </v:roundrect>
+                                                <![endif]-->
+                                                <div style=3D"background-co=
+lor:#d3d3d3;border:1px solid #d3d3d3;border-radius:3px;color:gray;display:i=
+nline-block;font-family:sans-serif;font-size:16px;line-height:22px;text-ali=
+gn:center;text-decoration:none;width:120px;-webkit-text-size-adjust:none;ms=
+o-hide:all;padding:5px 0;"><b>0.0%</b><br><span style=3D"font-size:small;">=
+SKIPPED</span></div>
+                                            </center>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style=3D"width:10%;"></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr><td class=3D"spacer" style=3D"height: 20px;"></td><=
+td></td></tr>
+                    <tr>
+                        <td style=3D"color:#00a4db;">Started:</td>
+                        <td style=3D"padding-left:10px;"><b>16:00:54</b></t=
+d>
+                    </tr>
+                    <tr>
+                        <td style=3D"color:#00a4db;">Duration: </td>
+                        <td style=3D"padding-left:10px;"><b>00:00:08.723000=
+0</b></td>
+                    </tr>
+                    <tr>
+                        <td style=3D"color:#00a4db;">Result: </td>
+                        <td style=3D"padding-left:10px;"><b>Passed</b></td>
+                    </tr>
+                    <tr>
+                        <td style=3D"color:#00a4db;">Started By: </td>
+                        <td style=3D"padding-left:10px;"><b>Kelvis Arcilla<=
+/b></td>
+                    </tr>
+                    <tr>
+                        <td style=3D"color:#00a4db;">Agent: </td>
+                        <td style=3D"padding-left:10px;"><b>kelvis</b></td>
+                    </tr>
+                    <tr>
+                        <td style=3D"color:#00a4db;">Platform: </td>
+                        <td style=3D"padding-left:10px;"><b>Web</b></td>
+                    </tr>
+                    <tr>
+                        <td style=3D"color:#00a4db;">Tests: </td>
+                        <td style=3D"padding-left:10px;"><b>1</b></td>
+                    </tr>
+                    <tr>
+                        <td style=3D"color:#00a4db;">Targets: </td>
+                        <td style=3D"padding-left:10px;">
+                            <ul>
+                                    <li><b>Chrome (84.0.4147.135)</b></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <table style=3D"width:100%;text-align:center;" cellspacing=
+=3D"0" cellpadding=3D"0">
+                    <tr><td></td><td class=3D"spacer" style=3D"height: 20px=
+;"></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td class=3D"button-container" style=3D"text-align:=
+ center;">
+                            <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <center>
+                                                <!--[if mso]>
+                                                  <v:roundrect xmlns:v=3D"u=
+rn:schemas-microsoft-com:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:w=
+ord" href=3D"https://app.testproject.io/#/reports/projects/24358/jobs/wndhQ=
+y0tdEakPL7VO3HhGg/execution/XWEtS0eNt0evwg2qq-sIpg?es=3D2020-08-29T16:00:42=
+.000Z" style=3D"height:36px;v-text-anchor:middle;width:150px;" arcsize=3D"5=
+%" strokecolor=3D"#00a4db" fillcolor=3D"#00a4db">
+                                                    <w:anchorlock/>
+                                                    <center style=3D"color:=
+#ffffff;font-family:Helvetica, Arial,sans-serif;font-size:16px;">FULL REPOR=
+T</center>
+                                                  </v:roundrect>
+                                                <![endif]-->
+                                                <a href=3D"https://app.test=
+project.io/#/reports/projects/24358/jobs/wndhQy0tdEakPL7VO3HhGg/execution/X=
+WEtS0eNt0evwg2qq-sIpg?es=3D2020-08-29T16:00:42.000Z" style=3D"background-co=
+lor:#00a4db;border:1px solid #00a4db;border-radius:3px;color:#ffffff;displa=
+y:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-=
+align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none=
+;mso-hide:all;">FULL REPORT</a>
+                                            </center>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr><td></td><td class=3D"spacer" style=3D"height: 20px=
+;"></td><td></td></tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div class=3D"mail-text secondary-text" style=
+=3D"width: 550px;margin: auto;font-size: 14px;line-height: 18px;">
+                                <p>
+                                    <b>Have any questions or suggestions?</=
+b>
+                                    You are welcome to contact us at any ti=
+me via the <a href=3D"https://support.testproject.io" style=3D"text-decorat=
+ion: none;color: #13a3da;">support portal</a>. We are always happy to hear =
+from you and help you with any possible issues.
+                                </p>
+                                <p>
+                                    TestProject Team
+                                </p>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+
+<td class=3D"footer" style=3D"text-align: center;width: 100%;">
+	<table style=3D"width: 100%;">
+		<tr>
+			<td class=3D"seperator" style=3D"margin: auto;width: 90%;height: 1px;bac=
+kground-color: #d9d9d9;"></td>
+		</tr>
+		<tr>
+			<td class=3D"footer-text" style=3D"color: #9a9a9a;margin: auto;font-size=
+: 12px;font-weight: 300;line-height: 16px;text-align: center;">
+				<p>
+					This message was sent by <a href=3D"https://testproject.io" style=3D"t=
+ext-decoration: none;color: #13a3da;">TestProject</a><br>
+					Need <a href=3D"https://support.testproject.io" style=3D"text-decorati=
+on: none;color: #13a3da;">help</a> using TestProject?<br>
+					=A9 2020 TestProject<br>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td class=3D"footer-icons-container" style=3D"text-align: center;height:=
+ 24px;">
+				<span>
+					<a href=3D"https://www.facebook.com/testproject.io/" style=3D"text-dec=
+oration: none;color: #13a3da;"><img src=3D"https://storage-static.testproje=
+ct.io/templates/facebook-circle-gray.png" style=3D"height: 24px;width: 24px=
+;"></a>
+					<a href=3D"https://www.linkedin.com/company/testproject/" style=3D"tex=
+t-decoration: none;color: #13a3da;"><img src=3D"https://storage-static.test=
+project.io/templates/linkedin-circle-gray.png" style=3D"height: 24px;width:=
+ 24px;"></a>
+					<a href=3D"https://twitter.com/TestProject_io" style=3D"text-decoratio=
+n: none;color: #13a3da;"><img src=3D"https://storage-static.testproject.io/=
+templates/twitter-circle-gray.png" style=3D"height: 24px;width: 24px;"></a>
+					<a href=3D"https://github.com/testproject-io" style=3D"text-decoration=
+: none;color: #13a3da;"><img src=3D"https://storage-static.testproject.io/t=
+emplates/github-circle-gray.png" style=3D"height: 24px;width: 24px;"></a>
+				</span>
+			</td>
+
+		</tr>
+	</table>
+</td>
+        </tr>
+    </table>
+<img src=3D"https://u2310615.ct.sendgrid.net/wf/open?upn=3DPOYFZj7MMnGcva9z=
+AvS-2BsXxAo33JjncmpB8Kx93-2FNWiAMNgzro6qhkpzask4tce7UQMIkKtsVWX2AMRpQgXxRL7=
+zqT76ouwtdCaDTVycwcbXzVr8mFU7-2BkM3qpMtx4E5oEi1XCMi6bAV8MPeTurnh2U639j6SOnF=
+ttNWFh6M-2BpKCppfUAuqiBNRAGrQ6wFscXHcrh3rIElqYzehZGIAWFah7EX-2Fe1neO2GewN5N=
+5-2FY4-3D" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1=
+px !important;width:1px !important;border-width:0 !important;margin-top:0 !=
+important;margin-bottom:0 !important;margin-right:0 !important;margin-left:=
+0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-r=
+ight:0 !important;padding-left:0 !important;"/></body>
+</html>
